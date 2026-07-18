@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domanda</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    background:#222;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+}
+
+h1{
+    color:white;
+    margin-bottom:40px;
+    font-size:70px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+
+button{
+    padding:35px 55px;
+    font-size:40px;
+    border:none;
+    border-radius:10px;
+    
+}
+
+#yesBtn{
+    background:#28a745;
+    color:white;
+    cursor:pointer;
+}
+#yesBtn:hover{
+    transform: translateY(4px);
+}
+
+#noBtn{
+    position:absolute;
+    background:#dc3545;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Veramente?</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">SI</button>
+        <button id="noBtn">NO</button>
+    </div>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+// Posiziona il NO vicino al SI
+const yesRect = yesBtn.getBoundingClientRect();
+noBtn.style.left = (yesRect.right + 20) + "px";
+noBtn.style.top = yesRect.top + "px";
+
+document.addEventListener("mousemove", (e) => {
+
+    const rect = noBtn.getBoundingClientRect();
+
+    const dx = e.clientX - (rect.left + rect.width/2);
+    const dy = e.clientY - (rect.top + rect.height/2);
+
+    const distance = Math.sqrt(dx*dx + dy*dy);
+
+    if(distance < 120){
+        const x = Math.random() * (window.innerWidth - rect.width);
+        const y = Math.random() * (window.innerHeight - rect.height);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+yesBtn.onclick = () => {
+    alert("❤️ Hai scelto SI!");
+};
+</script>
+
+</body>
+</html>
