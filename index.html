@@ -1,0 +1,296 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulsante che scappa</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:#222;
+        overflow:hidden;
+        font-family:Arial, sans-serif;
+    }
+
+    #noBtn{
+        position:absolute;
+        padding:35px 55px;
+        font-size:30px;
+        border:none;
+        border-radius:30px;
+        background:#ff3b3b;
+        color:white;
+        cursor:pointer;
+        transition:left .15s ease, top .15s ease;
+    }
+    #SiBtn{
+        position:relative;
+        padding:35px 55px;
+        font-size:30px;
+        border:none;
+        border-radius:30px;
+        background:#ff3b3b;
+        color:white;
+        cursor:pointer;
+    }
+</style>
+</head>
+<body>
+
+<button id="SiBtn">SI</button>
+<button id="noBtn">NO</button>
+
+<script>
+const btn = document.getElementById("noBtn");
+
+// Posizione iniziale
+btn.style.left = window.innerWidth / 2 - 50 + "px";
+btn.style.top = window.innerHeight / 2 + "px";
+
+document.addEventListener("mousemove", (e) => {
+
+    const rect = btn.getBoundingClientRect();
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Se il mouse è vicino, il pulsante scappa
+    if (distance < 160) {
+
+        let newX = Math.random() * (window.innerWidth - rect.width);
+        let newY = Math.random() * (window.innerHeight - rect.height);
+
+        btn.style.left = newX + "px";
+        btn.style.top = newY + "px";
+    }
+});
+
+
+</script>
+
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulsante che scappa</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center; 
+    align-items:center;
+    gap:20px;
+    background:#222;
+    font-family:Arial, sans-serif;
+    overflow:hidden; 
+}
+
+button{
+    padding:15px 35px;
+    font-size:40px;
+    border:none; 
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#28a745;
+    color:white;
+}
+
+#noBtn{
+     position:absolute; 
+    background:#dc3545;
+    color:white;
+}
+</style>
+</head>
+<body>
+<h1>SI O NO?</h1>
+
+<button id="yesBtn">SÌ</button>
+<button id="noBtn">NO</button>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+// Posizione iniziale del pulsante NO
+noBtn.style.left = (window.innerWidth / 2 + 80) + "px";
+noBtn.style.top = (window.innerHeight / 2 - 25) + "px";
+
+// Il pulsante NO scappa
+document.addEventListener("mousemove", (e) => {
+
+    const rect = noBtn.getBoundingClientRect();
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if(distance < 160){
+
+        const newX = Math.random() * (window.innerWidth - rect.width);
+        const newY = Math.random() * (window.innerHeight - rect.height);
+
+        noBtn.style.left = newX + "px";
+        noBtn.style.top = newY + "px";
+    }
+});
+
+// Pulsante SÌ cliccabile
+yesBtn.addEventListener("click", () => {
+    alert("Hai cliccato SÌ! 🎉");
+});
+
+// Anche se riesci a cliccare NO...
+noBtn.addEventListener("click", () => {
+    alert("Complimenti! Sei riuscito a cliccare NO 😄");
+});
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domanda</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    background:#222;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+}
+
+h1{
+    color:white;
+    margin-bottom:40px;
+    font-size:70px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+button{
+    padding:35px 55px;
+    font-size:40px;
+    border:none;
+    border-radius:10px;
+    
+}
+
+#yesBtn{
+    background:#28a745;
+    color:white;
+    cursor:pointer;
+}
+#yesBtn:hover{
+    transform: translateY(4px);
+}
+
+#noBtn{
+    position:absolute;
+    background:#dc3545;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>SI O NO?</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">SI</button>
+        <button id="noBtn">NO</button>
+    </div>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+// Posiziona il NO vicino al SI
+const yesRect = yesBtn.getBoundingClientRect();
+noBtn.style.left = (yesRect.right + 20) + "px";
+noBtn.style.top = yesRect.top + "px";
+
+document.addEventListener("mousemove", (e) => {
+
+    const rect = noBtn.getBoundingClientRect();
+
+    const dx = e.clientX - (rect.left + rect.width/2);
+    const dy = e.clientY - (rect.top + rect.height/2);
+
+    const distance = Math.sqrt(dx*dx + dy*dy);
+
+    if(distance < 140){
+        const x = Math.random() * (window.innerWidth - rect.width);
+        const y = Math.random() * (window.innerHeight - rect.height);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+yesBtn.onclick = () => {
+    window.location.href = "secondo.html";
+    
+};
+</script>
+
+</body>
+</html>
